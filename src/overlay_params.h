@@ -31,6 +31,7 @@ typedef unsigned long KeySym;
    OVERLAY_PARAM_BOOL(core_load)                     \
    OVERLAY_PARAM_BOOL(core_bars)                     \
    OVERLAY_PARAM_BOOL(cpu_temp)                      \
+   OVERLAY_PARAM_BOOL(crosshair)                     \
    OVERLAY_PARAM_BOOL(cpu_power)                     \
    OVERLAY_PARAM_BOOL(gpu_temp)                      \
    OVERLAY_PARAM_BOOL(gpu_junction_temp)             \
@@ -146,6 +147,9 @@ typedef unsigned long KeySym;
    OVERLAY_PARAM_CUSTOM(io_read)                     \
    OVERLAY_PARAM_CUSTOM(io_write)                    \
    OVERLAY_PARAM_CUSTOM(cpu_color)                   \
+   OVERLAY_PARAM_CUSTOM(crosshair_radius)            \
+   OVERLAY_PARAM_CUSTOM(crosshair_color)             \
+   OVERLAY_PARAM_CUSTOM(crosshair_border)            \
    OVERLAY_PARAM_CUSTOM(gpu_color)                   \
    OVERLAY_PARAM_CUSTOM(vram_color)                  \
    OVERLAY_PARAM_CUSTOM(ram_color)                   \
@@ -276,6 +280,9 @@ struct overlay_params {
    float font_scale_media_player;
    float background_alpha, alpha;
    float cellpadding_y;
+   unsigned crosshair_radius;
+   unsigned crosshair_color;
+   unsigned crosshair_border;
    std::vector<KeySym> toggle_hud;
    std::vector<KeySym> toggle_preset;
    std::vector<KeySym> toggle_fps_limit;

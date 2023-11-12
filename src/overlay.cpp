@@ -707,6 +707,31 @@ void render_imgui(swapchain_stats& data, struct overlay_params& params, ImVec2& 
          ImGui::GetWindowDrawList()->AddCircleFilled(ImVec2(data.main_window_pos.x + window_size.x - 15, data.main_window_pos.y + 15), 10, params.engine_color, 20);
       window_size = ImVec2(window_size.x, ImGui::GetCursorPosY() + 10.0f);
       ImGui::End();
+      // Render a crosshair (circle) in the middle of the screen
+      if (params.enabled[OVERLAY_PARAM_ENABLED_crosshair]) {
+         auto dpy = ImGui::GetIO().DisplaySize;
+
+         ImGui::SetNextWindowPos(ImVec2(0, 0));
+         ImGui::SetNextWindowSize(dpy);
+         ImGui::SetNextWindowBgAlpha(0.1f);
+
+         ImGui::Begin("crosshair", NULL,
+            ImGuiWindowFlags_NoTitleBar|
+            ImGuiWindowFlags_NoResize|
+            ImGuiWindowFlags_NoMove|
+            ImGuiWindowFlags_NoScrollbar|
+            ImGuiWindowFlags_NoScrollWithMouse);
+
+         ImGui::GetWindowDrawList()->AddCircle(
+            ImVec2(dpy.x / 2, dpy.y / 2), // center
+            (float)params.crosshair_radius, // radius
+            params.crosshair_color, // color
+            12, // segments
+            (float)params.crosshair_border // thickness
+         );
+
+         ImGui::End();
+      }
       if((now - logger->last_log_end()) < 12s && !logger->is_active())
          render_benchmark(data, params, window_size, height, now);
    }

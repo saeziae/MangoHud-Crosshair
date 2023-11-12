@@ -496,7 +496,9 @@ parse_fps_metrics(const char *str){
 #define parse_text_outline_color(s) parse_color(s)
 #define parse_text_outline_thickness(s) parse_float(s)
 #define parse_device_battery(s) parse_str_tokenize(s)
-
+#define parse_crosshair_radius(s) parse_unsigned(s)
+#define parse_crosshair_color(s) parse_color(s)
+#define parse_crosshair_border(s) parse_unsigned(s)
 static bool
 parse_help(const char *str)
 {
@@ -716,6 +718,9 @@ static void set_param_defaults(struct overlay_params *params){
    params->table_columns = 3;
    params->text_outline_color = 0x000000;
    params->text_outline_thickness = 1.5;
+   params->crosshair_radius = 10;
+   params->crosshair_color = 0xFF00FF00;
+   params->crosshair_border = 2;
 }
 
 void
